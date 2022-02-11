@@ -7,9 +7,14 @@ import NestedApp from "./components/nesting-components/NestedApp.vue";
 import CheckboxSelect from "./components/checkbox-select.vue";
 import { store } from "./store/store";
 // import Projects from "./components/Projects.vue";
+import BlogApp from "./components/blog-app/BlogApp.vue";
+import VueResource from "vue-resource";
+import ShowBlogs from "./components/blog-app/ShowBlogs";
+import AddBlog from "./components/blog-app/AddBlog.vue";
 
 // Vue.component("projects", Projects);
 
+Vue.use(VueResource);
 Vue.use(VueRouter);
 
 //Create new instance if VueRouter
@@ -20,6 +25,20 @@ const router = new VueRouter({
     { path: "/nestedapp", component: NestedApp },
     { path: "/checkbox", component: CheckboxSelect },
     { path: "/checkbox/:id", component: CheckboxSelect },
+    {
+      path: "/blog",
+      component: BlogApp,
+      children: [
+        {
+          path: "showall",
+          component: ShowBlogs,
+        },
+        {
+          path: "add",
+          component: AddBlog,
+        },
+      ],
+    },
     // {
     //   path: "/checkbox",
     //   component: CheckboxSelect,
